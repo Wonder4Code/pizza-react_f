@@ -1,0 +1,72 @@
+@import "../../assets/main";
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.header__top {
+  display: flex;
+  justify-content: space-between;
+  padding: 50px 38px 40px 67px
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+
+  &__text-wrapper {
+    margin: 0 0 0 17px;
+  }
+
+  &__title {
+    font-family: $Proxima_bold;
+    text-transform: uppercase;
+    font-size: 24px;
+    color: #181818;
+    margin: 0;
+  }
+
+  &__description {
+    font-family: $Proxima;
+    font-size: 16px;
+    color: #7B7B7B;
+  }
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 50px;
+  background: $orange;
+  border-radius: 30px;
+
+  &__title {
+    font-family: $Proxima_bold;
+    font-weight: 700;
+    font-size: 16px;
+    color: #fff;
+  }
+
+  &__divider {
+    width: 1px;
+    height: 25px;
+    background: #fff;
+    margin: 0 37px 0 13px;
+  }
+
+  &__title_cart {
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: url("images/cart.png");
+      left: -24px;
+    }
+  }
+}
