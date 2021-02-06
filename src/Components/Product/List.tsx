@@ -1,6 +1,6 @@
-import React, {Fragment} from 'react'
+import React, {Fragment, useEffect, useState} from 'react'
 import Item from './Item'
-import {pizzasArray} from './itemConfig'
+import {getPizzaList} from '../../axios/axios'
 
 interface ItemInterface {
     id: number,
@@ -17,9 +17,16 @@ interface Pizza {
 }
 
 function List() {
+
+    const [pizzaList,setPizzaList] = useState<[]>([])
+
+    useEffect(() => {
+        getPizzaList(setPizzaList)
+    }, [])
+
     return (
         <div style={{display: 'flex', justifyContent: 'space-around'}}>
-            {pizzasArray.map((pizza: Pizza) => {
+            {pizzaList.map((pizza: Pizza) => {
                 return (
                     <Fragment key={pizza.id}>
                         <Item pizza={pizza}/>

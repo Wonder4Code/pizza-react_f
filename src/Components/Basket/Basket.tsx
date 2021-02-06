@@ -17,7 +17,7 @@ interface Pizza {
 
 let Basket = () => {
 
-    const {basketOrder, setBasketOrder, basketCount,totalPrice, updatePizzaCount, removeFromBasket, removeItem} = useContext<any>(context)
+    const {basketOrder, basketCount,totalPrice, updatePizzaCount, removeFromBasket, removeItem} = useContext<any>(context)
 
     return(
         <div className={'basket-wrapper'}>

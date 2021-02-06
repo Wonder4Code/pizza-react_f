@@ -8,6 +8,7 @@ import MainPage from "../Pages/Main/MainPage";
 import BasketPage from "../Pages/Basket/BasketPage";
 import Header from "../Components/Header/Header";
 import {context} from '../assets/Context/Context'
+import {getPizzaList} from '../axios/axios'
 
 interface Pizza {
     id: string,
@@ -23,6 +24,8 @@ const App = () => {
     const [basketOrder, setBasketOrder] = useState<object[]>([])
     const [totalPrice, setTotalPrice] = useState<number>(0)
     const [basketCount, setBasketCount] = useState<number>(0)
+
+    getPizzaList()
 
     const addToBasket =  (pizza: Pizza) => {
         if (!findPizza(pizza) || !basketOrder.length) {
