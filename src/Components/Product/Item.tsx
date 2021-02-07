@@ -1,8 +1,9 @@
-import React, {useState, useEffect,useContext} from 'react'
-import {v4 as uuid} from 'uuid'
+import React, {useState, useEffect} from 'react'
 import './style.scss'
 import cheeseburger from './images/cheeseburger.png'
-import {context} from '../../assets/Context/Context'
+import {addToBasketAction, countPlusAction} from '../../redux/actions/basketActions'
+import {useDispatch, useStore} from 'react-redux'
+import {v4 as uuidv4} from 'uuid'
 
 interface ItemInterface {
     id: number,
@@ -20,28 +21,42 @@ interface Props {
     }
 }
 
-function Item(props: Props) {
+const Item = (props: Props) => {
+    const dispatch = useDispatch()
+    const store = useStore()
 
-    const [name, setName] = useState(props.pizza.name)
+    const name: string = props.pizza.name
     const [dough, setDough] = useState<ItemInterface | null>(null)
     const [size, setSize] = useState<ItemInterface | null>(null)
     const [price, setPrice] = useState(0)
 
-    const {addToBasket} = useContext<any>(context)
-
     useEffect(() => {
-        if(dough && size) {
+        if (dough && size) {
             setPrice(dough.cost + size.cost)
         }
     }, [dough, size])
 
-    let doughName = dough?.title
-    let sizeName = size?.title
+    const findId = (array: []): string | undefined => {
+        let foundId
 
-    const addPizza = () => {
-        let myPizza = {name, doughName, sizeName, price, count: 0}
-        addToBasket(myPizza)
+        array.forEach((item: any) => {
+            if (item.name === name && item.dough === dough?.title && item.size === size?.title) {
+                foundId = item.id
+            }
+        })
+        return foundId
     }
+
+    const addToBasket = () => {
+        let foundId = findId(store.getState().basket)
+
+        if (foundId) {
+            dispatch(countPlusAction(foundId))
+        } else {
+            dispatch(addToBasketAction({id: uuidv4(),name, dough: dough?.title, size: size?.title, price, count: 1}))
+        }
+    }
+
     return (
         <>
             <div className={'item'} key={props.pizza.id}>
@@ -50,10 +65,8 @@ function Item(props: Props) {
                 <div className={'configuration'}>
                     <div className={'configuration__dough'}>
                         {props.pizza.dough.map((item: ItemInterface) => {
-                            if (!dough) {
-                                if(item.chosen) {
-                                    setDough(item)
-                                }
+                            if (!dough && item.chosen) {
+                                setDough(item)
                             }
                             return (
                                 <span key={item.id} className={`configuration__dough-item configuration__item 
@@ -65,7 +78,7 @@ function Item(props: Props) {
                     <div className={'configuration__size'}>
                         {props.pizza.size.map((item: ItemInterface) => {
                             if (!size) {
-                                if(item.chosen) {
+                                if (item.chosen) {
                                     setSize(item)
                                 }
                             }
@@ -80,7 +93,7 @@ function Item(props: Props) {
                 </div>
                 <div className={'item-footer'}>
                     <h1 className={'item-footer__title'}>от {price} ₽</h1>
-                    <div className={'item-footer__button'} onClick={addPizza}>
+                    <div className={'item-footer__button'} onClick={addToBasket}>
                         <span>+ Добавить</span>
                     </div>
                 </div>
