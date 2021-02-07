@@ -4,31 +4,35 @@ import cheeseburger from './images/cheeseburger.png'
 import {addToBasketAction, countPlusAction} from '../../redux/actions/basketActions'
 import {useDispatch, useStore} from 'react-redux'
 import {v4 as uuidv4} from 'uuid'
-
-interface ItemInterface {
-    id: number,
-    title: string,
-    cost: number,
-    chosen: boolean
-}
+import {ItemInterface, SubItemInterface} from '../../interfaces/interfaces'
+import SubItem from "./SubItem";
 
 interface Props {
-    pizza: {
-        id: number,
-        name: string,
-        dough: ItemInterface[],
-        size: ItemInterface[],
-    }
+    item: ItemInterface
 }
 
 const Item = (props: Props) => {
     const dispatch = useDispatch()
     const store = useStore()
 
-    const name: string = props.pizza.name
-    const [dough, setDough] = useState<ItemInterface | null>(null)
-    const [size, setSize] = useState<ItemInterface | null>(null)
-    const [price, setPrice] = useState(0)
+    const name: string = props.item.name
+    const [dough, setDough] = useState<SubItemInterface | null>(null)
+    const [size, setSize] = useState<SubItemInterface | null>(null)
+    const [price, setPrice] = useState<number>(0)
+
+    useEffect(() => {
+        props.item.dough.forEach((item: SubItemInterface):void => {
+            if(item.chosen) {
+                setDough(item)
+            }
+        })
+
+        props.item.size.forEach((item:SubItemInterface):void => {
+            if (item.chosen) {
+                setSize(item)
+            }
+        })
+    }, [])
 
     useEffect(() => {
         if (dough && size) {
@@ -37,7 +41,7 @@ const Item = (props: Props) => {
     }, [dough, size])
 
     const findId = (array: []): string | undefined => {
-        let foundId
+        let foundId: string | undefined
 
         array.forEach((item: any) => {
             if (item.name === name && item.dough === dough?.title && item.size === size?.title) {
@@ -47,8 +51,8 @@ const Item = (props: Props) => {
         return foundId
     }
 
-    const addToBasket = () => {
-        let foundId = findId(store.getState().basket)
+    const addToBasket = ():void => {
+        let foundId: string | undefined = findId(store.getState().basket)
 
         if (foundId) {
             dispatch(countPlusAction(foundId))
@@ -59,34 +63,21 @@ const Item = (props: Props) => {
 
     return (
         <>
-            <div className={'item'} key={props.pizza.id}>
+            <div className={'item'} key={props.item.id}>
                 <img src={cheeseburger} alt="pizza" className={'item__image'}/>
-                <h1 className={'item__title'}>{props.pizza.name}</h1>
+                <h1 className={'item__title'}>{props.item.name}</h1>
                 <div className={'configuration'}>
                     <div className={'configuration__dough'}>
-                        {props.pizza.dough.map((item: ItemInterface) => {
-                            if (!dough && item.chosen) {
-                                setDough(item)
-                            }
+                        {props.item.dough.map((subItem: SubItemInterface) => {
                             return (
-                                <span key={item.id} className={`configuration__dough-item configuration__item 
-                        ${dough && item.title === dough.title ? 'configuration__item_active' : ''}`}
-                                      onClick={() => setDough(item)}>{item.title}</span>
+                                <SubItem subItem={subItem} state={dough} setState={setDough} key={subItem.id}/>
                             )
                         })}
                     </div>
                     <div className={'configuration__size'}>
-                        {props.pizza.size.map((item: ItemInterface) => {
-                            if (!size) {
-                                if (item.chosen) {
-                                    setSize(item)
-                                }
-                            }
+                        {props.item.size.map((subItem: SubItemInterface) => {
                             return (
-                                <span key={item.id}
-                                      className={`configuration__dough-item configuration__item 
-                            ${size && item.title === size.title ? 'configuration__item_active' : ''}`}
-                                      onClick={() => setSize(item)}>{item.title}</span>
+                                <SubItem subItem={subItem} state={size} setState={setSize} key={subItem.id}/>
                             )
                         })}
                     </div>

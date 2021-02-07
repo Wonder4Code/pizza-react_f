@@ -12,14 +12,14 @@ const Header = () => {
     return (
         <div className={'header'}>
             <div className={'header__top'}>
-                <Link to={'/'} className={'logo'} style={{textDecoration:'none'}}>
+                <Link to={'/'} className={'logo link'}>
                     <img src={logo} alt="logo" className={'logo__image'}/>
                     <div className={'logo__text-wrapper'}>
                         <h1 className={'logo__title'}>react pizza</h1>
                         <span className={'logo__description'}>самая вкусная пицца во вселенной</span>
                     </div>
                 </Link>
-                <Link to={'/basket'} className={'button'} style={{textDecoration:'none'}}>
+                <Link to={'/basket'} className={'button link'}>
                         <div className={'button__price'}>
                             <span className={'button__title'}>{totalPrice(basket)} ₽</span>
                         </div>
@@ -29,7 +29,7 @@ const Header = () => {
                         </div>
                 </Link>
             </div>
-            <div style={{margin: 0, background:'#F7F7F7', width:'100%', height:'1px'}}/>
+            <div className={'divider'}/>
         </div>
     )
 }

@@ -39,6 +39,13 @@
     font-size: 16px;
     color: #B6B6B6;
     margin: 0 0 0 15px;
+    &:hover {
+      color: #b0b0b0;
+    }
+
+    &-wrapper {
+      cursor: pointer;
+    }
   }
 
   &__info, &__buttons-wrapper {
@@ -78,21 +85,33 @@
     font-family: $Proxima_bold;
     font-size: 16px;
     font-weight: 700;
-    border: 1px solid #D3D3D3;
     box-sizing: border-box;
     border-radius: 30px;
     padding: 17px 0;
     background: none;
     cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    transition: 200ms;
 
     &_back {
       color: #CACACA;
+      border: 1px solid #D3D3D3;
+      &:hover {
+        color: #b0b0b0;
+        border: 1px solid #b0b0b0;
+      }
     }
 
     &_pay {
       color: #fff;
       background: $orange;
       border: 1px solid $orange;
+      &:hover {
+        color: $orange;
+        background: #fff;
+      }
     }
   }
 }
@@ -141,16 +160,11 @@
   }
 
   &__button {
-    width: 32px;
-    height: 32px;
-    border: 2px solid $orange;
-    border-radius: 50%;
     color: $orange;
-    font-size: 20px;
     background: none;
+    cursor: pointer;
 
     &_remove {
-      border: 2px solid #D0D0D0;
       color: #D0D0D0;
     }
   }
@@ -165,11 +179,11 @@
 
   &__count {
     min-width: 15px;
-    margin: 0 12px;
+    margin: 0 8px;
   }
 
   &__price {
     min-width: 70px;
-    margin: 0 93px;
+    margin: 0 80px;
   }
 }
