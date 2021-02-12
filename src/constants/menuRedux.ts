@@ -1,0 +1,1 @@
+export const INITIAL_MENU = 'INITIAL_MENU'
