@@ -1,12 +1,13 @@
-import React,{useContext} from 'react'
+import React from 'react'
 import {Link} from 'react-router-dom'
 import './style.scss'
 import logo from './images/logo.png'
-import {context} from '../../assets/Context/Context'
+import {useSelector} from 'react-redux'
+import {totalPrice, totalCount} from '../../functions/functions'
 
-function Header() {
+const Header = () => {
 
-    const {totalPrice,basketCount} = useContext<any>(context)
+    const basket = useSelector((state:any) => state.basket)
 
     return (
         <div className={'header'}>
@@ -20,11 +21,11 @@ function Header() {
                 </Link>
                 <Link to={'/basket'} className={'button'} style={{textDecoration:'none'}}>
                         <div className={'button__price'}>
-                            <span className={'button__title'}>{totalPrice} ₽</span>
+                            <span className={'button__title'}>{totalPrice(basket)} ₽</span>
                         </div>
                         <div className={'button__divider'}/>
                         <div className={'button__amount'}>
-                            <span className={'button__title button__title_cart'}>{basketCount}</span>
+                            <span className={'button__title button__title_cart'}>{totalCount(basket)}</span>
                         </div>
                 </Link>
             </div>
