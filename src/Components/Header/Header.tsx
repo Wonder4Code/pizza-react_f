@@ -7,7 +7,7 @@ import {totalPrice, totalCount} from '../../functions/functions'
 
 const Header = () => {
 
-    const basket = useSelector((state:any) => state.basket)
+    const basket = useSelector((state: any) => state.basket)
 
     return (
         <div className={'header'}>
@@ -19,15 +19,21 @@ const Header = () => {
                         <span className={'logo__description'}>самая вкусная пицца во вселенной</span>
                     </div>
                 </Link>
-                <Link to={'/basket'} className={'button link'}>
+                <div style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
+                    <Link to={'/admin'} className={'admin link'}>
+                        admin
+                    </Link>
+                    <Link to={'/basket'} className={'button link'}>
                         <div className={'button__price'}>
-                            <span className={'button__title'}>{totalPrice(basket)} ₽</span>
+                            <span className={'button__title'}>{totalPrice(basket)} P</span>
                         </div>
                         <div className={'button__divider'}/>
                         <div className={'button__amount'}>
                             <span className={'button__title button__title_cart'}>{totalCount(basket)}</span>
                         </div>
-                </Link>
+                    </Link>
+                </div>
+
             </div>
             <div className={'divider'}/>
         </div>

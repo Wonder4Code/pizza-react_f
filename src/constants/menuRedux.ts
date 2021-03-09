@@ -1,1 +1,4 @@
 export const INITIAL_MENU = 'INITIAL_MENU'
+export const UPDATE_ITEM = 'UPDATE_ITEM'
+export const UPDATE_ITEM_NAME = 'UPDATE_ITEM_NAME'
+export const DELETE_ITEM = 'DELETE_ITEM'

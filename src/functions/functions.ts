@@ -13,3 +13,11 @@ export const totalCount = (array: []): number => {
     })
     return total
 }
+
+export const getClassName = (filterName:string, name: string, className:string): string => {
+    let activeClass: string = ''
+    if (filterName === name) {
+        activeClass = `${className} ${className}_active`
+    }
+    return activeClass ? activeClass : className
+}

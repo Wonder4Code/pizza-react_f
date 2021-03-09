@@ -1,0 +1,123 @@
+@import "../../../assets/main";
+
+.admin-item {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  &__name {
+    font-family: $Proxima;
+    font-size: 18px;
+    color: #777777;
+    margin: 0 5px 0 0;
+  }
+
+  &__input {
+    font-family: $Proxima;
+    font-size: 16px;
+    padding: 0;
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+  }
+
+  &__name-title {
+    font-family: $Proxima;
+    font-size: 16px;
+    margin: 0;
+  }
+
+
+  &__block {
+    padding: 10px;
+    margin: 10px 0 0 0;
+    border: 1px solid black;
+    border-radius: 10px;
+  }
+
+  &__title {
+    font-family: $Proxima;
+    font-size: 20px;
+    text-align: center;
+    margin: 0 0 10px 0;
+  }
+
+  &__name-block {
+    display: flex;
+    align-items: center;
+  }
+
+  &__edit-block {
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 0 0 5px 0;
+  }
+
+  &__edit-button {
+    font-family: $Proxima;
+    padding: 4px 10px;
+    color: #fff;
+    background: $orange;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+
+    &__cancel {
+      background: gray;
+    }
+  }
+
+  &__control-button {
+    font-family: $Proxima;
+    font-size: 18px;
+    padding: 5px 10px;
+    margin: 0 5px;
+    color: $orange;
+    background: #fff;
+    border: 1px solid $orange;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    transition: 200ms ease;
+    &:hover {
+      color: #fff;
+      background: $orange;
+    }
+  }
+
+  &__subItem-wrapper {
+    display: flex;
+    justify-content: space-around;
+  }
+}
+
+@media screen and (max-width: 1035px){
+  .admin-item {
+    flex-direction: column;
+
+    &__controls-wrapper {
+      margin: 10px 0 0 0;
+    }
+  }
+}
+
+@media screen and (max-width: 660px){
+  .admin-item {
+
+    &__subItem-wrapper {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &__name-block {
+      flex-direction: column;
+    }
+
+    &__input {
+      text-align: center;
+    }
+  }
+}
+

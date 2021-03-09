@@ -6,3 +6,14 @@ export const getPizzaList = (thenFunc) => {
         .then(data => thenFunc(data.data))
         .catch(() => console.log('error'))
 }
+
+export const updatePizzaItem = (id,data,thenFunc) => {
+    axios.put(PIZZA(id), data)
+        .then(thenFunc)
+        .catch(() => console.log('error on update'))
+}
+
+export const deletePizzaItem = (id) => {
+    axios.delete(PIZZA(id))
+        .then(() => console.log('deleted'))
+}

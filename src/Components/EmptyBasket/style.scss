@@ -1,0 +1,57 @@
+@import "../../assets/main";
+
+.empty-basket {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 150px);
+  }
+
+  &__title {
+    font-family: $Proxima_bold;
+    font-size: 32px;
+    font-weight: 700;
+    text-align: center;
+    margin: 0 0 10px 0;
+  }
+
+  &__text {
+    font-family: $Proxima;
+    font-size: 18px;
+    font-weight: 400;
+    color: #777777;
+    text-align: center;
+    margin: 0 0 50px 0;
+  }
+
+  &__image {
+    width: 300px;
+    height: 255px;
+  }
+
+  &__button {
+    width: 210px;
+    margin: 74px 0 0 0;
+    font-family: $Proxima_bold;
+    font-weight: 700;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    color: #ffffff;
+    padding: 15px 0;
+    background: #282828;
+    border-radius: 30px;
+    border: 1px solid #282828;
+    transition: 200ms;
+
+    &:hover {
+      color: #282828;
+      background: #ffffff;
+    }
+  }
+}

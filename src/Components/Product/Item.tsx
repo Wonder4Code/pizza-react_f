@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react'
 import './style.scss'
-import cheeseburger from './images/cheeseburger.png'
 import {addToBasketAction, countPlusAction} from '../../redux/actions/basketActions'
 import {useDispatch, useStore} from 'react-redux'
 import {v4 as uuidv4} from 'uuid'
@@ -41,14 +40,8 @@ const Item = (props: Props) => {
     }, [dough, size])
 
     const findId = (array: []): string | undefined => {
-        let foundId: string | undefined
-
-        array.forEach((item: any) => {
-            if (item.name === name && item.dough === dough?.title && item.size === size?.title) {
-                foundId = item.id
-            }
-        })
-        return foundId
+        let foundObject:any = array.find((item:any) => item.name === name && item.dough === dough?.title && item.size === size?.title)
+        return foundObject?.id
     }
 
     const addToBasket = ():void => {
@@ -57,14 +50,15 @@ const Item = (props: Props) => {
         if (foundId) {
             dispatch(countPlusAction(foundId))
         } else {
-            dispatch(addToBasketAction({id: uuidv4(),name, dough: dough?.title, size: size?.title, price, count: 1}))
+            dispatch(addToBasketAction({id: uuidv4(),name, dough: dough?.title, size: size?.title, price, count: 1, image:props.item.image}))
         }
+        alert(`${name} добавлена в корзину`)
     }
 
     return (
         <>
             <div className={'item'} key={props.item.id}>
-                <img src={cheeseburger} alt="pizza" className={'item__image'}/>
+                <img src={require(`./images/${props.item.image}.png`).default} alt="pizza" className={'item__image'}/>
                 <h1 className={'item__title'}>{props.item.name}</h1>
                 <div className={'configuration'}>
                     <div className={'configuration__dough'}>
@@ -83,7 +77,7 @@ const Item = (props: Props) => {
                     </div>
                 </div>
                 <div className={'item-footer'}>
-                    <h1 className={'item-footer__title'}>от {price} ₽</h1>
+                    <h1 className={'item-footer__title'}>Цена {price} ₽</h1>
                     <div className={'item-footer__button'} onClick={addToBasket}>
                         <span>+ Добавить</span>
                     </div>

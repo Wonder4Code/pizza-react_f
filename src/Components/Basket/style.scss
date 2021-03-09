@@ -8,6 +8,7 @@
 
 .basket {
   width: 820px;
+  padding: 0 40px;
 
   &__header {
     display: flex;
@@ -114,6 +115,10 @@
       }
     }
   }
+
+  &-pizza-wrapper {
+    width: 100%;
+  }
 }
 
 .pizza {
@@ -135,7 +140,6 @@
 
   &__text {
     width: 268px;
-    margin: 0 68px 0 15px;
   }
 
   &__title {
@@ -184,6 +188,53 @@
 
   &__price {
     min-width: 70px;
-    margin: 0 80px;
+  }
+}
+
+@media screen and (max-width: 920px) {
+  .basket-pizza-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  .pizza {
+    flex-direction: column;
+    padding: 30px 0;
+    border-radius: 5px;
+    margin: 10px;
+    box-shadow: 0 5px 10px gray;
+
+    &__text {
+      margin: 20px 0;
+      text-align: center;
+    }
+
+    &__price {
+      min-width: 0;
+      margin: 20px 0;
+    }
+
+    &-divider {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: 500px){
+  .basket__header, .basket__info, .basket__buttons-wrapper {
+    flex-direction: column;
+  }
+
+  .basket__title-wrapper, .basket__remove-wrapper, .basket__button {
+    justify-content: center;
+    margin: 10px;
+  }
+
+  .basket-wrapper {
+    padding: 0;
+  }
+
+  .basket {
+    padding: 40px;
   }
 }
