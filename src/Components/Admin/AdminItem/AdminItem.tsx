@@ -92,7 +92,7 @@ const AdminItem = ({item}: Props) => {
             </div>
             <div className={'admin-item__controls-wrapper'}>
                 <button className={'admin-item__control-button'} onClick={updateItem}>обновить</button>
-                <button className={'admin-item__control-button'} onClick={() => deleteItemFunc(item.id)}>удалит</button>
+                <button className={'admin-item__control-button'} onClick={() => deleteItemFunc(item.id)}>удалить</button>
             </div>
         </div>
 
