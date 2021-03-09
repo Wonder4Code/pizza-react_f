@@ -49,14 +49,14 @@ const AdminItem = ({item}: Props) => {
                         {
                             edit
                                 ? <div>
-                                    <button className={'admin-item__edit-button'} onClick={() => editName(true)}>edit
+                                    <button className={'admin-item__edit-button'} onClick={() => editName(true)}>изменить
                                     </button>
                                     <button className={'admin-item__edit-button admin-item__edit-button__cancel'}
-                                            onClick={() => editName(false)}>cancel
+                                            onClick={() => editName(false)}>отмена
                                     </button>
                                 </div>
                                 : <button className={'admin-item__edit-button'}
-                                          onClick={() => editName(false)}>change</button>
+                                          onClick={() => editName(false)}>изменить</button>
                         }
                         <div className={'admin-item__name-block'}>
                             <span className={'admin-item__name'}>Название пиццы: </span>
@@ -91,8 +91,8 @@ const AdminItem = ({item}: Props) => {
                 </div>
             </div>
             <div className={'admin-item__controls-wrapper'}>
-                <button className={'admin-item__control-button'} onClick={updateItem}>update</button>
-                <button className={'admin-item__control-button'} onClick={() => deleteItemFunc(item.id)}>delete</button>
+                <button className={'admin-item__control-button'} onClick={updateItem}>обновить</button>
+                <button className={'admin-item__control-button'} onClick={() => deleteItemFunc(item.id)}>удалить</button>
             </div>
         </div>
 

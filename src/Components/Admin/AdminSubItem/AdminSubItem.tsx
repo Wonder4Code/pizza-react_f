@@ -43,10 +43,10 @@ const AdminSubItem = ({props, subItemTitle, id}: any) => {
                 {
                     editable
                         ? <div>
-                            <button className={'admin-subItem__edit-button'} onClick={() => editItem(true)}>edit</button>
-                            <button className={'admin-subItem__edit-button admin-subItem__edit-button__cancel'} onClick={() => editItem(false)}>cancel</button>
+                            <button className={'admin-subItem__edit-button'} onClick={() => editItem(true)}>изменить</button>
+                            <button className={'admin-subItem__edit-button admin-subItem__edit-button__cancel'} onClick={() => editItem(false)}>отмена</button>
                         </div>
-                        : <button className={'admin-subItem__edit-button'} onClick={() => editItem(false)}>change</button>
+                        : <button className={'admin-subItem__edit-button'} onClick={() => editItem(false)}>изменить</button>
                 }
 
             </div>
