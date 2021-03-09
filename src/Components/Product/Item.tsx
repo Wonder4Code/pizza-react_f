@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import './style.scss'
 import {addToBasketAction, countPlusAction} from '../../redux/actions/basketActions'
 import {useDispatch, useStore} from 'react-redux'
-import {v4 as uuidv4} from 'uuid'
+import {v4 as uuidV4} from 'uuid'
 import {ItemInterface, SubItemInterface} from '../../interfaces/interfaces'
 import SubItem from "./SubItem";
 
@@ -31,7 +31,7 @@ const Item = (props: Props) => {
                 setSize(item)
             }
         })
-    }, [])
+    }, [props.item])
 
     useEffect(() => {
         if (dough && size) {
@@ -50,7 +50,7 @@ const Item = (props: Props) => {
         if (foundId) {
             dispatch(countPlusAction(foundId))
         } else {
-            dispatch(addToBasketAction({id: uuidv4(),name, dough: dough?.title, size: size?.title, price, count: 1, image:props.item.image}))
+            dispatch(addToBasketAction({id: uuidV4(),name, dough: dough?.title, size: size?.title, price, count: 1, image:props.item.image}))
         }
         alert(`${name} добавлена в корзину`)
     }

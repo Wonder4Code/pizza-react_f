@@ -41,7 +41,7 @@ const AdminItem = ({item}: Props) => {
         <div className={'admin-item'}>
             <div className={'admin-item__image-wrapper'}>
                 <img src={require(`../../Product/images/${item.image}.png`).default}
-                     alt="pizza image" style={{width: 200}} className={'admin-item__image'}/>
+                     alt="pizza" style={{width: 200}} className={'admin-item__image'}/>
             </div>
             <div className={'admin-item__item-wrapper'}>
                 <div>
